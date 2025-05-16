@@ -1,4 +1,4 @@
-Devops-coding-challenge
+#Devops-lightfeather
 This is the terraform repo for the project located at https://github.com/smonthe0218-lf/devops-challenge-lightfeather.
 
 The terraform files will deploy the frontend and backend components and expose the frontend using an application load balancer.
@@ -7,7 +7,7 @@ The output will be the DNS name of the application load balancer.
 
 Backend
 The backend end state is stored in an existing bucket terraform-bucket-stephan. The bucket is private and encrypted and has versioning enabled, which provides security to the terraform state.
-
+					
 In case there is no existing bucket, one can be easily created using this
 
 resource "aws_s3_bucket" "-bucket" {
@@ -75,6 +75,6 @@ Then apply using
 
    terraform apply -var-file vars/devops.tfvars -auto-approve
 Deploying using jenkins
-A jenkinsfile was created in this repository https://github.com/smonthe0218-lf/devops-challenge-lightfeather .to allow an end to end deployment of this project.
+A jenkinsfile was created in this repository https://github.com/smonthe0218-lf/devops-challenge-lightfeather.to allow an end to end deployment of this project.
 
 Use the credentials given to you to log in and run the job using build now.
