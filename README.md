@@ -10,6 +10,7 @@ The backend end state is stored in an existing bucket terraform-bucket-stephan. 
 					
 In case there is no existing bucket, one can be easily created using this
 
+```
 resource "aws_s3_bucket" "-bucket" {
   bucket = "devops-terraform-state"
 
@@ -33,6 +34,7 @@ resource "aws_s3_bucket" "-bucket" {
     }
   }
 }
+```
 A dynamo db can also be created to provide state locking using
 
 resource "aws_dynamodb_table" "terraform_locks" {
