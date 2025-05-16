@@ -1,4 +1,4 @@
-###**Devops-lightfeather**
+### **Devops-lightfeather**
 
 This is the terraform repo for the project located at https://github.com/smonthe0218-lf/devops-challenge-lightfeather.
 
