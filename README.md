@@ -1,11 +1,11 @@
-#Devops-lightfeather
+**#Devops-lightfeather**
 This is the terraform repo for the project located at https://github.com/smonthe0218-lf/devops-challenge-lightfeather.
 
 The terraform files will deploy the frontend and backend components and expose the frontend using an application load balancer.
 
 The output will be the DNS name of the application load balancer.
 
-Backend
+**Backend**
 The backend end state is stored in an existing bucket terraform-bucket-stephan. The bucket is private and encrypted and has versioning enabled, which provides security to the terraform state.
 					
 In case there is no existing bucket, one can be easily created using this
@@ -48,23 +48,23 @@ resource "aws_dynamodb_table" "terraform_locks" {
   }
 }
 ```
-Networking
+**Networking**
 The networking components include a VPC with 3 private subnets and 3 public subnets in 3 availability zones in us-east-1 region. We also have an internet gateway, 3 NAT Gateways and 3 EIP, 1 public and private route tables. The application load balancer will sit in the private subnets while the ECS tasks and services will reside in the private subnets for security.
 
-IAM roles
+**IAM roles**
 An IAM role is defined to allow ECS to execute tasks.
 
-ALB
+**ALB**
 An application load balancer will connect to the 2 services using 2 listeners, 1 on 80 with a target group connecting to the frontend ecs service on port 3000. And the other listener will connect to the backend service using port 8080. The ALB and ECS tasks SG have been defined accordingly to enable traffic.
 
-ECS Cluster
+**ECS Cluster**
 An ECS cluster is created along side with 2 log_groups in cloudwatch, 1 for the frontend, 1 for the backend.
 
 Two (2) ECS services are created for the front end and back. They have their respective security groups and they are attached to the ALB created previously with their respective target groups.
 
 Two (2) ECS tasks are created in ecs_tasks.tf, which contain the respective container definition for the frontend container and backend container.
 
-How to run the Terraform script
+**How to run the Terraform script**
 Inititialize terraform by running
 ```
 terraform init -backend-config=backend/devops.tf
