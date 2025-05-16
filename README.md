@@ -36,7 +36,7 @@ resource "aws_s3_bucket" "-bucket" {
 }
 ```
 A dynamo db can also be created to provide state locking using
-
+```
 resource "aws_dynamodb_table" "terraform_locks" {
   name         = "devops-state-locks"
   billing_mode = "PAY_PER_REQUEST"
@@ -47,6 +47,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
 }
+```
 Networking
 The networking components include a VPC with 3 private subnets and 3 public subnets in 3 availability zones in us-east-1 region. We also have an internet gateway, 3 NAT Gateways and 3 EIP, 1 public and private route tables. The application load balancer will sit in the private subnets while the ECS tasks and services will reside in the private subnets for security.
 
@@ -65,17 +66,21 @@ Two (2) ECS tasks are created in ecs_tasks.tf, which contain the respective cont
 
 How to run the Terraform script
 Inititialize terraform by running
-
+```
 terraform init -backend-config=backend/devops.tf
+```
 Then we can validate it by running:
-
+```
 terraform validate
+```
 After that run terraform plan
-
+```
 terraform plan -var-file vars/devops.tfvars
+```
 Then apply using
-
+```
    terraform apply -var-file vars/devops.tfvars -auto-approve
+```
 Deploying using jenkins
 A jenkinsfile was created in this repository https://github.com/smonthe0218-lf/devops-challenge-lightfeather.to allow an end to end deployment of this project.
 
